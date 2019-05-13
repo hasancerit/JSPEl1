@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,21 +32,20 @@ public class SendAttr extends HttpServlet {
 		map.put("key2", "value2");
 		map.put("key3", "value3");
 		req.setAttribute("map", map);
-		req.setAttribute("index","key2");
-		
-		Map<Integer, String> mapInt = new LinkedHashMap<Integer, String>();
-		mapInt.put(1, "Integer1");
-		mapInt.put(2, "Integer2");
-		mapInt.put(3, "Integer3");
-		req.setAttribute("mapInt", mapInt);
+		req.setAttribute("key","key2");
 		
 		ArrayList<String> arrayList = new ArrayList<String>();
 		arrayList.add("listEleman1");
 		arrayList.add("listEleman2");
 		arrayList.add("listEleman3");
 		req.setAttribute("arrayList", arrayList);
-		req.setAttribute("key","2");
+		req.setAttribute("index","2");
 
+		req.setAttribute("hasan","cerit");
+		req.getServletContext().setAttribute("deniz","inan");
+		Cookie cookie = new Cookie("myCookie", "cookie");
+		resp.addCookie(cookie);
+		
 		RequestDispatcher view = req.getRequestDispatcher("JSPs/eljsp.jsp");
 		view.forward(req, resp);
 	}

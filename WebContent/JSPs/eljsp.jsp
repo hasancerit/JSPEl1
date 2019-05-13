@@ -24,39 +24,44 @@
 	
 	
 	<!-- Expression Language(EL) araciligiyla ic ice(nested) property /instance variable degerlerine ulasabiliriz. -->
-	
 	<!-- (attribute name).(value) -->
 	${myemployee.empId} 
     ${myemployee.name}
 	${myemployee.department.departmentName }
 	${myemployee.department.departmentId }
 	
-    ${myemployee["empId"]} 
+	
+    ${myemployee["empId"]}
 	${myemployee['name']}
 	${myemployee["department"]["departmentName"]}
 	${myemployee['department']["departmentId"]}
+	${myemployee['department'][departmentId]}<!-- YANLIS, ic ice siniflara veya degerlere erismek icin tirnak kullanılır. -->
+	${myemployee[empId]}<!-- YANLIS, ic ice siniflara veya degerlere erismek icin tirnak kullanılır. -->
 	<br>
 	${map.key1}
     ${map.key2} 
     ${map.key3}
     
     ${map["key1"]}
+    ${map[key1]}<!-- YANLIS. Map keyleri tirnak ici yazilir -->
 	${map["key2"]}
 	${map["key3"]}
-	${map[index]}<!--  index'i tirnak icinde yazmadigimiz icin, index adinda bir attribute aradi ve map["key2"] olmus oldu
-						yani [] arasina cift ya da tek tirnakli yazmazsak attribute olarak arar-->
+	${map[key]}<!-- Tirnak icinde yazmazsak index adinda bir attr arar -->
 	<br>
-	${mapInt['1']}
-	${mapInt["2"]}
-	${mapInt[1]}
-	${mapInt[2]}
-	<br>
-	
-	${arrayList[0]}
+	${arrayList[0]}<!-- İndexler tirnak ici veya disi yazilabilir -->
 	${arrayList['1']}
 	${arrayList["2"]}
-	${arrayList[key]}
+	${arrayList[index]}<!-- Tirnak icinde yazmazsak index adinda bir attr arar -->
+	<br>
 	
 	
+	<!-- EL impclicit nesneleri, JSP impclicit nesneler ile aynı degildir(PageContext haric).Orn request(JSP Implicit) ile requsetScope(EL Implicit) ayni degildir. 
+	Request Scope attribute’leri tutan Map’tir.Sadece attrlere ulasabiliriz. Request Propertiese ulasamayız(Req poroperties'a PageContext ile ulastik)-->
+	${hasan} 
+	${requestScope.hasan} 
+	${applicationScope.deniz} 
+	${cookie.myCookie.value} 
+	${header["host"]}
+	${pageContext.request.method}	
     </body>
 </html>
